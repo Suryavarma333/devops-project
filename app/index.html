@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DevOpsKart 🚀</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 30px;
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.search {
+  padding: 8px;
+  border-radius: 20px;
+  border: none;
+}
+
+.icons i {
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.hero h1 {
+  font-size: 32px;
+}
+
+.hero button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  background: #00ffcc;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.hero button:hover {
+  transform: scale(1.1);
+}
+
+/* Categories */
+.categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px,1fr));
+  gap: 15px;
+  padding: 20px;
+}
+
+.cat {
+  background: rgba(255,255,255,0.1);
+  padding: 20px;
+  text-align: center;
+  border-radius: 15px;
+  transition: 0.3s;
+}
+
+.cat:hover {
+  transform: translateY(-5px);
+}
+
+/* Products */
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  color: black;
+  border-radius: 15px;
+  padding: 15px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.card button {
+  margin-top: 10px;
+  padding: 8px;
+  border: none;
+  background: #6a11cb;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* Cart Sidebar */
+.cart {
+  position: fixed;
+  right: -300px;
+  top: 0;
+  width: 300px;
+  height: 100%;
+  background: white;
+  color: black;
+  padding: 20px;
+  transition: 0.4s;
+}
+
+.cart.active {
+  right: 0;
+}
+
+.cart h2 {
+  margin-bottom: 10px;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+  <div class="logo">DevOpsKart 🚀</div>
+  <input class="search" placeholder="Search tools...">
+  <div class="icons">
+    <i class="fas fa-shopping-cart" onclick="toggleCart()"></i>
+    <span id="count">0</span>
+    <i class="fas fa-user"></i>
+  </div>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <h1>Delivering DevOps Tools in Minutes ⚡</h1>
+  <button>Shop Now</button>
+</div>
+
+<!-- Categories -->
+<div class="categories">
+  <div class="cat">☁ Cloud</div>
+  <div class="cat">⚙ Kubernetes</div>
+  <div class="cat">🔁 CI/CD</div>
+  <div class="cat">📊 Monitoring</div>
+  <div class="cat">🌐 Networking</div>
+</div>
+
+<!-- Products -->
+<div class="products">
+
+<div class="card">
+  <img src="https://via.placeholder.com/150">
+  <h3>Kubernetes Setup</h3>
+  <p>$20</p>
+  <button onclick="addToCart(20)">Add</button>
+</div>
+
+<div class="card">
+  <img src="https://via.placeholder.com/150">
+  <h3>Docker Templates</h3>
+  <p>$10</p>
+  <button onclick="addToCart(10)">Add</button>
+</div>
+
+<div class="card">
+  <img src="https://via.placeholder.com/150">
+  <h3>CI/CD Kit</h3>
+  <p>$15</p>
+  <button onclick="addToCart(15)">Add</button>
+</div>
+
+<div class="card">
+  <img src="https://via.placeholder.com/150">
+  <h3>Grafana Pack</h3>
+  <p>$25</p>
+  <button onclick="addToCart(25)">Add</button>
+</div>
+
+</div>
+
+<!-- Cart -->
+<div class="cart" id="cart">
+  <h2>Cart</h2>
+  <p>Total: $<span id="total">0</span></p>
+  <button>Checkout</button>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  Built for DevOps Project 🚀
+</div>
+
+<script>
+let total = 0;
+let count = 0;
+
+function addToCart(price) {
+  total += price;
+  count++;
+
+  document.getElementById("total").innerText = total;
+  document.getElementById("count").innerText = count;
+}
+
+function toggleCart() {
+  document.getElementById("cart").classList.toggle("active");
+}
+</script>
+
+</body>
+</html>
