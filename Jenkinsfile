@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         AWS_REGION = "ap-south-1"
-        ECR_REPO = "<account-id>.dkr.ecr.ap-south-1.amazonaws.com/devopskart"
+        ECR_REPO = "134553439515.dkr.ecr.ap-south-1.amazonaws.com/devopskart"
     }
 
     stages {
