@@ -10,7 +10,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t devopskart:v2 .'
+                sh 'docker build -t devopskart:v2 ./docker'
             }
         }
 
