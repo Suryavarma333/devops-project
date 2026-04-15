@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devopskart-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: devopskart
+  template:
+    metadata:
+      labels:
+        app: devopskart
+    spec:
+      containers:
+      - name: devopskart-container
+        image: 134553439515.dkr.ecr.ap-south-1.amazonaws.com/devopskart:v1
+        ports:
+        - containerPort: 5000
+      imagePullSecrets:
+      - name: ecr-secret

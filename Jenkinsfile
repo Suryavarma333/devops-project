@@ -17,7 +17,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'docker build -t devopskart:v1 ./docker'
+                    sh 'docker build -t devopskart:v2 ./docker'
                 }
             }
         }

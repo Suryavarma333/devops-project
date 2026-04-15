@@ -1,11 +1,11 @@
-FROM python:3.9-slim
+# Use Nginx, the standard for web servers
+FROM nginx:alpine
 
-WORKDIR /app
+# Copy your 'app' folder (where index.html is) into the Nginx web folder
+COPY ./app /usr/share/nginx/html
 
-COPY . .
+# Expose port 80 (standard for web traffic)
+EXPOSE 80
 
-RUN pip install flask
-
-EXPOSE 5000
-
-CMD ["python", "app.py"]
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]
