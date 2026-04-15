@@ -8,40 +8,39 @@ pipeline {
 
     stages {
 
-        stage('Clone Code') {
-            steps {
-                git branch: 'main', url: 'https://github.com/Suryavarma333/devops-project.git'
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
-                script {
-                    sh 'docker build -t devopskart:v2 ./docker'
-                }
+                sh 'docker build -t devopskart:v2 .'
             }
         }
 
         stage('Login to ECR') {
             steps {
-                script {
-                    sh '''
-                    aws ecr get-login-password --region $AWS_REGION \
-                    | docker login --username AWS --password-stdin $ECR_REPO
-                    '''
-                }
+                sh '''
+                aws ecr get-login-password --region $AWS_REGION \
+                | docker login --username AWS --password-stdin $ECR_REPO
+                '''
             }
         }
 
         stage('Tag Image') {
             steps {
-                sh 'docker tag devopskart:v1 $ECR_REPO:v1'
+                sh 'docker tag devopskart:v2 $ECR_REPO:v2'
             }
         }
 
         stage('Push to ECR') {
             steps {
-                sh 'docker push $ECR_REPO:v1'
+                sh 'docker push $ECR_REPO:v2'
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                sh '''
+                kubectl set image deployment/devopskart-deployment \
+                devopskart-container=$ECR_REPO:v2
+                '''
             }
         }
     }
