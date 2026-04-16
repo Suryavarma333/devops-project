@@ -10,7 +10,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t devopskart:v2 .'
+                sh 'docker build -t devopskart:v3 .'
             }
         }
 
@@ -25,13 +25,13 @@ pipeline {
 
         stage('Tag Image') {
             steps {
-                sh 'docker tag devopskart:v2 $ECR_REPO:v2'
+                sh 'docker tag devopskart:v3 $ECR_REPO:v3'
             }
         }
 
         stage('Push to ECR') {
             steps {
-                sh 'docker push $ECR_REPO:v2'
+                sh 'docker push $ECR_REPO:v3'
             }
         }
 
@@ -39,7 +39,7 @@ pipeline {
             steps {
                 sh '''
                 kubectl set image deployment/devopskart-deployment \
-                devopskart-container=$ECR_REPO:v2
+                devopskart-container=$ECR_REPO:v3
                 '''
             }
         }
